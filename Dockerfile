@@ -18,19 +18,6 @@ ENV PYTHONUNBUFFERED=1
 
 WORKDIR /app
 
-# Create a non-privileged user that the app will run under.
-# See https://docs.docker.com/go/dockerfile-user-best-practices/
-ARG UID=10001
-RUN adduser \
-    --disabled-password \
-    --gecos "" \
-    --home "/nonexistent" \
-    --shell "/sbin/nologin" \
-    --no-create-home \
-    --uid "${UID}" \
-    appuser
-
-RUN chown -R appuser:appuser .
 # Download dependencies as a separate step to take advantage of Docker's caching.
 # Leverage a cache mount to /root/.cache/pip to speed up subsequent builds.
 # Leverage a bind mount to requirements.txt to avoid having to copy them into
@@ -49,4 +36,4 @@ COPY . .
 EXPOSE 3000
 
 # Run the application.
-CMD jupyter lab --port 3000 --allow-root
+CMD ["jupyter", "lab", "--ip=0.0.0.0", "--port=3000", "--no-browser", "--allow-root"]

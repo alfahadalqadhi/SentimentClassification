@@ -24,7 +24,7 @@ def main_parse_args(*args):
                                The dataset should be in csv format with one\
                                field containing the text and the second containing\
                                its class. The text must be a string and the\
-                               class could be a string (ex. sentiment) or int' ,
+                               class could be a string (ex. sentiment) or int.' ,
                         default= './datasets/TwitterSentiment_V1/tweet_sentiment.csv')
     parser.add_argument('--vocab',
                         type=str,
@@ -33,7 +33,7 @@ def main_parse_args(*args):
                                 line. You can use a vocabulary of your own,\
                                 if the file does not exist at the path a\
                                 vocabulary will be created based on the words\
-                                in the dataset\n Default: "from_pretrained"',
+                                in the dataset. Default: "from_pretrained"',
                         default= 'from_pretrained')
     
     
